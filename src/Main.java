@@ -10,8 +10,6 @@ public class Main {
     private static void task1() {
         List<Integer> nums = new ArrayList<>(List.of(1, 1, 2, 3, 4, 4, 5, 5, 6, 7));
 
-        System.out.println(nums.toString());
-
         for (int num : nums) {
             if (num % 2 != 0) {
                 System.out.print(num + " ");
@@ -27,7 +25,6 @@ public class Main {
         Set<Integer> evenNums = new HashSet<>();
 
         Collections.sort(nums);
-        System.out.println(nums.toString());
 
         for (Integer num : nums) {
             if (num % 2 == 0) {
@@ -44,10 +41,21 @@ public class Main {
     // Код должен работать с любой последовательностью и объемом списка слов.
     private static void task3() {
         List<String> words = new ArrayList<>(List.of("one", "two", "three", "four", "five", "five", "six", "seven", "seven", "one", "eight", "nine", "ten"));
-        Set<String> uniqueWords = new HashSet<>(words);
+        Map<String, Integer> uniqueWords = new HashMap<>();
 
-        System.out.println(words.toString());
-        System.out.println(uniqueWords.toString());
+        for (String word : words) {
+            if (uniqueWords.containsKey(word)) {
+                uniqueWords.put(word, uniqueWords.get(word) + 1);
+            } else {
+                uniqueWords.put(word, 1);
+            }
+        }
+
+        for (Map.Entry<String, Integer> word : uniqueWords.entrySet()) {
+            if (word.getValue() == 1) {
+                System.out.print(word.getKey() + " ");
+            }
+        }
     }
 
     // Напишите код, который выводит в консоль все количество дублей из списка слов.
@@ -60,8 +68,6 @@ public class Main {
     private static void task4() {
         List<String> words = new ArrayList<>(List.of("one", "two", "one", "three", "four", "five", "five", "six", "seven", "seven", "one", "eight", "nine", "ten"));
         Map<String, Integer> duplicates = new HashMap<>();
-
-        System.out.println(words);
 
         for (String word : words) {
             if (duplicates.containsKey(word)) {
